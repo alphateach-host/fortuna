@@ -30,6 +30,90 @@
             z-index: -1;
         }
 
+        /* style *sect-header* */
+        .sect-header {
+            max-width: 1200px;
+            margin: 120px auto 60px;
+            padding: 0 2rem;
+            position: relative;
+            justify-self: center;
+        }
+        .sect-header::before {
+            content: "FORTUNA";
+            position: absolute;
+            top: -40px;
+            left: 1.5rem;
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            z-index: -1;
+            line-height: 1;
+        }
+        .sect-title {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .sect-title::after {
+            content: "";
+            height: 1px;
+            width: 60px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+        .sect-subtitle {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 30%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .sect-description {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            max-width: 550px;
+            line-height: 1.8;
+            border-left: 2px solid rgba(99, 102, 241, 0.2);
+            padding-left: 1.5rem;
+        }
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            position: relative;
+        }
+        .pulse-dot::after {
+            content: "";
+            position: absolute;
+            inset: -4px;
+            border: 1px solid #22c55e;
+            border-radius: 50%;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
         /* Style *nav* */
         .nav-bar {
             position: fixed;
@@ -447,6 +531,134 @@
             color: #94a3b8;
         }
 
+        /* Style *gallery* */
+        .gallery {
+            width: 100%;
+            margin: 10px 0;
+            position: relative;
+        }
+        .fg-minimal-header {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .fg-header-tag {
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: #64748b;
+        }
+        .fg-header-line {
+            height: 1px;
+            flex-grow: 1;
+            background: linear-gradient(to right, rgba(99, 102, 241, 0.3), transparent);
+        }
+        .fg-slider-wrapper {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 10px 8vw 60px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .fg-slider-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .fg-card {
+            flex: 0 0 400px;
+            scroll-snap-align: center;
+            border-radius: 30px;
+            aspect-ratio: 16/11;
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .fg-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            transition: 0.8s ease;
+        }
+        .fg-card:hover .fg-card-img {
+            opacity: 0.3;
+            transform: scale(1.1);
+        }
+        .fg-card-overlay {
+            position: absolute;
+            inset: 0;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(to top, rgba(2, 6, 23, 0.95) 0%, transparent 60%);
+            z-index: 2;
+        }
+        .fg-btn-hover {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+            opacity: 0;
+            visibility: hidden;
+            padding: 0.8rem 1.8rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 14px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            z-index: 10;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+            white-space: nowrap;
+        }
+        .fg-card:hover .fg-btn-hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%);
+            /* Naik ke tengah saat hover */
+        }
+        .fg-btn-hover:hover {
+            background: #fff;
+            color: var(--primary);
+            transform: translate(-50%, -55%) scale(1.05);
+        }
+        .fg-card-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            margin-top: 5px;
+        }
+        .fg-card-type {
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        @media (max-width: 768px) {
+            .fg-card {
+                flex: 0 0 320px;
+            }
+            .fg-btn-hover {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, -50%);
+                padding: 0.6rem 1.2rem;
+                font-size: 0.65rem;
+            }
+        }
+
         /* Style *pricing* */
         .pricing {
             max-width: 1200px;
@@ -640,6 +852,137 @@
 
         .price-card {
             animation: fadeIn 0.8s ease backwards;
+        }
+
+        /* Style *umkm* */
+        .umkm {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+        .umkm-premium-card {
+            position: relative;
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 40px;
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .umkm-premium-card::before {
+            content: "";
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            animation: pulse-red 8s infinite alternate;
+        }
+
+        @keyframes pulse-red {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0.8;
+            }
+        }
+
+        .flag-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 100px;
+            width: fit-content;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+        }
+        .id-flag {
+            width: 24px;
+            height: 16px;
+            background: linear-gradient(to bottom, #FF0000 50%, #FFFFFF 50%);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+        .umkm-title-large {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.05em;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+        .text-gradient-red {
+            background: linear-gradient(to right, #fff 20%, #ef4444 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .umkm-feature-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 12px 20px;
+            border-radius: 20px;
+            color: #ef4444;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+        .umkm-feature-pill:hover {
+            background: #ef4444;
+            color: white;
+        }
+        .floating-price-card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.8) 0%, rgba(2, 6, 23, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 35px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        .sol-logo-wrapper {
+            width: 50px;
+            margin: 0 auto 1.5rem;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 163, 0.3));
+        }
+        .btn-claim {
+            display: block;
+            margin-top: 2rem;
+            padding: 1.2rem;
+            background: linear-gradient(90deg, #ef4444, #b91c1c);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: 0.4s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-claim:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.4);
+        }
+
+        @media (max-width: 968px) {
+            .umkm-premium-card {
+                grid-template-columns: 1fr;
+                padding: 2.5rem;
+            }
         }
 
         /* Styles *consult* */
@@ -859,7 +1202,7 @@
             <img src="https://res.cloudinary.com/dzxhnvu4a/image/upload/v1769681516/IMG-20260129-WA0002_lhe5qe.jpg" alt="Logo" class="nav-photo">
             <span class="nav-item" style="color:white; font-size: 0.8rem;">Fortuna</span>
         </a>
-        <a href="https://wa.me/627776366677?etxt=*INFO*Fortuna%20Site%20Builder" class="nav-action">Contact</a>
+        <a href="https://wa.me/6287776366677?etxt=*INFO*Fortuna%20Site%20Builder" class="nav-action">Contact</a>
     </nav>
 
     <section class="hero">
@@ -876,7 +1219,7 @@
         </p>
 
         <div class="hr-actions">
-            <a href="https://wa.me/627776366677?etxt=*INFO*Fortuna%20Site%20Builder" class="hr-btn-main">Start a Project</a>
+            <a href="https://wa.me/6287776366677?etxt=*INFO*Fortuna%20Site%20Builder" class="hr-btn-main">Start a Project</a>
             <a href="#work" class="hr-btn-alt">View Work Places</a>
         </div>
     </section>
@@ -1085,6 +1428,23 @@
         </div>
     </section>
 
+    <div class="sect-header">
+        <div class="sect-title">
+            <span class="pulse-dot"></span>
+            Live Status
+        </div>
+
+        <h2 class="sect-subtitle">
+            Selected <span class="text-gradient">Work Places</span> &<br>
+            Active Deployments.
+        </h2>
+
+        <div class="sect-description">
+            Explore our current architectural deployments and live digital
+            environments currently under high-performance engineering.
+        </div>
+    </div>
+
     <section class="work-places" id="work">
         <div class="work-grid">
             <article class="work-card">
@@ -1109,6 +1469,26 @@
                     <p class="work-meta">
                         UI/UX • Frontend • Branding
                     </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="fg-minimal-header">
+            <div class="fg-header-tag">
+                <span>//</span> Production Gallery
+            </div>
+            <div class="fg-header-line"></div>
+        </div>
+        <div class="fg-slider-wrapper">
+
+            <article class="fg-card">
+                <img src="https://res.cloudinary.com/dzxhnvu4a/image/upload/v1769696640/IMG-20260129-WA0007_yvrcqq.jpg" class="fg-card-img" alt="Project">
+                <a href="https://alphateach-host.github.io/onehairstudio/" class="fg-btn-hover">View Project ↗</a>
+                <div class="fg-card-overlay">
+                    <span class="fg-card-type">Basic</span>
+                    <h3 class="fg-card-name">One Hairstudio</h3>
                 </div>
             </article>
         </div>
@@ -1167,7 +1547,7 @@
                         <span class="price-card__feature-icon">✔</span>Free Github Hosting
                     </li>
                 </ul>
-                <a href="#" class="btn btn--ghost">Agree</a>
+                <a href="https://wa.me/6287776366677?text=*INFO*Fortuna%20Basic%20Package" class="btn btn--ghost">Agree</a>
             </article>
             <article class="price-card" data-sol-value="0.60">
                 <span class="price-card__tier">//Profesional</span>
@@ -1216,7 +1596,7 @@
                         <span class="price-card__feature-icon">✔</span>Free Github Hosting
                     </li>
                 </ul>
-                <a href="#" class="btn btn--ghost">Agree</a>
+                <a href="https://wa.me/6287776366677?text=*INFO*Fortuna%20Gold%20Package" class="btn btn--ghost">Agree</a>
             </article>
             <article class="price-card" data-sol-value="1.0">
                 <span class="price-card__tier"> //Enterprise & E-Commerce</span>
@@ -1271,65 +1651,73 @@
                         <span class="price-card__feature-icon">✔</span>Free Github Hosting
                     </li>
                 </ul>
-                <a href="#" class="btn btn--ghost">Agree</a>
+                <a href="https://wa.me/6287776366677?text=*INFO*Fortuna%20Platinum%20Package" class="btn btn--ghost">Agree</a>
             </article>
-            <article class="price-card" data-sol-value="1.0">
-                <span class="price-card__tier"> //Enterprise/E-Commerce</span>
-                <h3 class="price-card__title">Platinum</h3>
-                <div class="price-card__price-wrapper">
-                    <svg class="price-card__sol-logo" viewBox="0 0 397 311">
-                        <path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7zM64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1L333.1 73.8c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8zM333.1 120.1c2.4-2.4 5.7-3.8 9.2-3.8H24.9c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#solana-gradient)" />
+        </div>
+    </section>
+
+    <section class="umkm">
+        <div class="umkm-premium-card">
+            <div class="umkm-info">
+                <div class="flag-container">
+                    <div class="id-flag"></div>
+                    <span style="font-size: 0.7rem; font-weight: 800; color: #fff; letter-spacing: 1px;">INDONESIAN PRIDE</span>
+                </div>
+
+                <h2 class="umkm-title-large">
+                    Digitizing <br>
+                    <span class="text-gradient-red">Local Heroes.</span>
+                </h2>
+
+                <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2.5rem; max-width: 450px;">
+                    Empowering Indonesian MSMEs to thrive in the digital era. Get a professional Web3-ready presence with our exclusive 0.1 SOL subsidy program.
+                </p>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                    <div class="umkm-feature-pill">
+                        🇮🇩 Local Business Only
+                    </div>
+                    <div class="umkm-feature-pill">
+                        ⚡ 24H Deployment
+                    </div>
+                </div>
+            </div>
+
+            <div class="floating-price-card price-card" data-sol-value="0.10">
+                <div class="sol-logo-wrapper">
+                    <svg viewBox="0 0 397 311">
+                        <path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7zM64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1L333.1 73.8c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8zM333.1 120.1c2.4-2.4 5.7-3.8 9.2-3.8H24.9c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" fill="url(#solana-gradient-umkm)" />
                         <defs>
-                            <linearGradient id="solana-gradient" x1="0" y1="0" x2="1" y2="1">
+                            <linearGradient id="solana-gradient-umkm" x1="0" y1="0" x2="1" y2="1">
                                 <stop stop-color="#00FFA3" /><stop offset="1" stop-color="#DC1FFF" />
                             </linearGradient>
                         </defs>
                     </svg>
-                    <span class="price-card__amount">1.00</span>
                 </div>
-                <div class="price-card__fiat-converted js-fiat-value">
-                    Memuat harga...
+
+                <span style="color: #ef4444; font-weight: 800; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;">Merdeka Package</span>
+                <div style="font-size: 3.5rem; font-weight: 900; color: #fff; margin: 0.5rem 0;">
+                    0.10 <span style="font-size: 1rem; color: #94a3b8;">SOL</span>
                 </div>
-                <div class="price-card__timeline-box">
-                    <span class="price-card__timeline-label">Timeline</span>
-                    <span class="price-card__timeline-value">2 - 8 weeks</span>
+
+                <div class="js-fiat-value" style="color: #fff; font-weight: 700; font-size: 1.1rem; background: rgba(255,255,255,0.05); padding: 5px 15px; border-radius: 10px; display: inline-block;">
+                    Syncing...
                 </div>
-                <ul class="price-card__features">
-                    <li class="price-card__feature-item">
-                        <span class="price-card__feature-icon">✔</span>Exclusive UI/UX Design
+
+                <ul style="text-align: left; list-style: none; padding: 0; margin: 2rem 0 0 0;">
+                    <li style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 0.8rem; display: flex; gap: 10px;">
+                        <span style="color: #ef4444;">✓</span> Single Page Optimized
                     </li>
-                    <li class="price-card__feature-item">
-                        <span class="price-card__feature-icon">✔</span>Support Multi-pages
-                    </li>
-                    <li class="price-card__feature-item">
-                        <span class="price-card__feature-icon">✔</span>Support Media Querry
-                    </li>
-                    <li class="price-card__feature-item">
-                        <span class="price-card__feature-icon">✔</span>Support 10-20 Revision Rounds
-                    </li>
-                    <li class="price-card__feature-item">
-                        <span class="price-card__feature-icon">✔</span>Support SEO Setup
-                    </li>
-                    <li class="price-card__feature-item">
-                        <span class="price-card__feature-icon">✔</span>Support Google Maps Location
-                    </li>
-                    <li class="price-card__feature-item">
-                        <span class="price-card__feature-icon">✔</span>Support Social Media Integration
-                    </li>
-                    <li class="price-card__feature-item">
-                        <span class="price-card__feature-icon">✔</span>Support Payment Gateaway
-                    </li>
-                    <li class="price-card__feature-item">
-                        <span class="price-card__feature-icon">✔</span>Support Multi-language
-                    </li>
-                    <li class="price-card__feature-item">
-                        <span class="price-card__feature-icon">✔</span>Free Github Hosting
+                    <li style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 0.8rem; display: flex; gap: 10px;">
+                        <span style="color: #ef4444;">✓</span> WhatsApp Business Integration
                     </li>
                 </ul>
-                <a href="#" class="btn btn--ghost">Agree</a>
-            </article>
+
+                <a href="https://wa.me/6287776366677?text=Hi! I want to claim the 0.1 SOL UMKM Merdeka Package" class="btn-claim">Claim Subsidy</a>
+            </div>
         </div>
     </section>
+
 
     <section class="consult-section" id="contact">
         <div class="max-w-[850px] mx-auto px-6 py-24">
@@ -1402,9 +1790,9 @@
                             Mon — Fri, 09:00 — 18:00
                         </p>
                     </div>
-                    <div class="hr-btn-main btn-trigger" style="padding: 0.8rem 1.5rem; font-size: 0.75rem; display: inline-block; width: 100%; text-align: center;">
+                    <a href="https://wa.me/6287776366677?text=*INFO*Fortuna%20Site%20Builder" class="hr-btn-main btn-trigger" style="padding: 0.8rem 1.5rem; font-size: 0.75rem; display: inline-block; width: 100%; text-align: center;">
                         Take To Action
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1419,6 +1807,7 @@
             </div>
         </div>
     </footer>
+
 
     <script>
         // Script *service*
@@ -1489,7 +1878,7 @@
         const priceCache = {
             data: null,
             lastFetch: null,
-            expiry: 60000 // 1 Menit
+            expiry: 60000
         };
         async function getSolanaPrices() {
             const now = Date.now();
@@ -1538,6 +1927,7 @@
         document.addEventListener('DOMContentLoaded', syncPricingUI);
     </script>
     <script>
+        // Script *consult-section*
         function sendToWhatsApp() {
             const phoneNumber = "6287776366677";
             const name = document.getElementById('clientName').value;
